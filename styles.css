@@ -67,7 +67,7 @@ body {
 
 /* Estilos para as cartas no quadro */
 .card {
-  max-width: 200px;
+  max-width: 100%;
   cursor: move;
   padding: 10px;
   margin: 10px 0;
