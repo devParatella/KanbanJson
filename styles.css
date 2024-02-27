@@ -1,0 +1,99 @@
+/* Reset CSS */
+* {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Estilos básicos para o corpo da página */
+body {
+  background-color: #ddd;
+}
+
+/* Estilo do título e header */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 25px;
+}
+
+/* Estilos para o quadro Kanban e suas colunas */
+.kanban-board {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.column {
+  padding: 10px;
+  width: 30%;
+  min-height: 300px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+}
+
+/* Estilos para os títulos das colunas */
+.column h2 {
+  text-align: center;
+}
+
+.column #style-todo,
+.column #style-doing,
+.column #style-done {
+  padding: 2px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.column #style-todo {
+  color: whitesmoke;
+  background-color: #f92f65;
+}
+
+.column #style-doing {
+  color: whitesmoke;
+  background-color: #fca144;
+}
+
+.column #style-done {
+  color: whitesmoke;
+  background-color: #49ddd1;
+}
+
+/* Estilos para as cartas no quadro */
+.card {
+  cursor: move;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input {
+  margin-top: 7px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  background-color: #9543e8;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  color: rgb(255, 255, 255);
+  background-color: #7e2cd0;
+}
