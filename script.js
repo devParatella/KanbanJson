@@ -123,12 +123,50 @@ function confirmDelete(cardId) {
 }
 
 // Permite ao usuário editar o texto de um cartão
+
+// Substituindo a função editCardText anterior por esta
 function editCardText(cardId) {
+    const cardIndex = cardsArray.findIndex((card) => card.id === cardId);
+    const cardTextElement = document.getElementById(cardId).querySelector('.card-text');
+  
+    if (cardIndex !== -1 && cardTextElement) {
+      const currentText = cardsArray[cardIndex].text;
+  
+      // Criar um elemento de input para a edição
+      const inputElement = document.createElement('input');
+      inputElement.type = 'text';
+      inputElement.value = currentText;
+  
+      // Substituir o texto pelo input para edição
+      cardTextElement.innerHTML = '';
+      cardTextElement.appendChild(inputElement);
+  
+      // Adicionar um listener para detectar a conclusão da edição
+      inputElement.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          const newText = inputElement.value;
+          cardsArray[cardIndex].text = newText;
+          saveToLocalStorage();
+          // Atualizar o texto no card após a edição
+          cardTextElement.textContent = newText;
+          alert("Texto do card atualizado com sucesso.");
+        }
+      });
+  
+      // Focar no input para iniciar a edição
+      inputElement.focus();
+    }
+  }
+  
+  
+  
+//função substituida
+/*function editCardText(cardId) {
   const newText = prompt("Digite o novo texto:");
   if (newText !== null) {
     updateCardText(cardId, newText);
   }
-}
+}*/
 
 // Atualiza o texto de um cartão na array, salva no armazenamento local e atualiza a visualização
 function updateCardText(cardId, newText) {
