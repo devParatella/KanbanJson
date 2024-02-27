@@ -67,12 +67,19 @@ body {
 
 /* Estilos para as cartas no quadro */
 .card {
+  max-width: 200px;
   cursor: move;
   padding: 10px;
   margin: 10px 0;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+.card-text {
+  white-space: normal;
+  word-break: break-word;
+  width: 100%;
 }
 
 input {

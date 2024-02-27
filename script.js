@@ -55,16 +55,25 @@ function updateCardColumn(cardId, newColumn) {
 
 // Cria um novo elemento de cartão e o adiciona à coluna especificada
 function createCard(column, text, id) {
-  // Cria o elemento de cartão
+
+    // Cria o elemento de cartão
   const card = document.createElement("div");
   card.draggable = true;
   card.className = "card";
   card.id = id;
   card.dataset.column = column;
 
+  // Cria o elemento de texto do cartão com a classe .card-text
+  const cardText = document.createElement("div");
+  cardText.className = "card-text";
+  cardText.textContent = text;
+
+  // Adiciona o texto ao cartão
+  card.appendChild(cardText);
+
   // Limita o texto exibido no cartão a 50 caracteres
   const limitedText = text.length > 50 ? text.substring(0, 50) + "..." : text;
-  card.textContent = limitedText;
+  //(comentado para texte)card.textContent = limitedText;
 
   // Adiciona os eventos de arrastar e soltar
   card.addEventListener("dragstart", dragStart);
