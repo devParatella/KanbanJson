@@ -67,6 +67,7 @@ body {
 
 /* Estilos para as cartas no quadro */
 .card {
+  position:relative;
   max-width: 100%;
   cursor: move;
   padding: 10px;
@@ -74,6 +75,36 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+.date-time {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.inputNova {
+  display: flex;
+  align-items: left;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 2px;
+  min-height: max-content;
+  word-wrap: break-word;
+}
+
+#todo-input::placeholder {
+  font-size: 16px;
+}
+
+#todo-input {
+  width: 500px;
+  margin-right: 10px;
+  font-size: 16px;
+
 }
 
 .card-text {

@@ -12,15 +12,21 @@
     <!-- Título -->
     <div class="header">
         <h1 class="title">Kanban interativo Turma 2</h1>
+        <!-- Input do card no quadro Kanban -->
+        <div class="inputNova">
+            <input type="text" id="todo-input" placeholder="Nova tarefa">
+            <button onclick="addCard('todo')">+</button>
+        </div>
     </div>
+
     <!-- Estrutura principal do quadro Kanban -->
     <div class="kanban-board">
+
         <!-- Coluna "A fazer" -->
         <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h2 id="style-todo">A fazer</h2>
             <div class="cards-container" id="todo-cards"></div>
-            <input type="text" id="todo-input" placeholder="Nova tarefa">
-            <button onclick="addCard('todo')">+</button>
+
         </div>
         <!-- Coluna "Em andamento" -->
         <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">

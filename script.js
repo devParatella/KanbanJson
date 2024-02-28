@@ -14,14 +14,24 @@ function getAllCards() {
   return cardsArray;
 }
 
+// variável com o valor máximo de caracteres por card
+const MAX_CHARACTERS = 400;
+
 // Adiciona um novo cartão à coluna especificada, atualiza a array e salva no armazenamento local
 function addCard(column) {
   const inputId = `${column}-input`;
   const text = document.getElementById(inputId).value;
 
   if (text) {
+    // Verifica se o texto excede o limite de caracteres
+    if (text.length > MAX_CHARACTERS) {
+      alert(`O texto do cartão não pode exceder ${MAX_CHARACTERS} caracteres.`);
+      return;
+    }
+
     const id = Date.now().toString();
-    createCard(column, text, id);
+    
+    createCard(column, text, id, new Date()); // Passa a data atual para a criação do card
     addCardArray({ id, column, text });
     saveToLocalStorage();
     // Limpa o campo de input após adicionar o cartão
@@ -68,12 +78,27 @@ function createCard(column, text, id) {
   cardText.className = "card-text";
   cardText.textContent = text;
 
+  // Adiciona a hora e a data ao card
+  const dateTime = document.createElement("div");
+  dateTime.className = "date-time";
+  dateTime.textContent = getFormattedDateTime(new Date()); // Passa a data atual para a formatação
+  card.appendChild(dateTime);
+
   // Adiciona o texto ao cartão
   card.appendChild(cardText);
 
-  // Limita o texto exibido no cartão a 50 caracteres
-  const limitedText = text.length > 50 ? text.substring(0, 50) + "..." : text;
-  //(comentado para texte)card.textContent = limitedText;
+  function getFormattedDateTime(date) {
+    const options = { 
+      day: '2-digit', 
+      month: '2-digit', 
+      year: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    };
+  
+    const formattedDateTime = date.toLocaleString('pt-BR', options);
+    return formattedDateTime;
+  }
 
   // Adiciona os eventos de arrastar e soltar
   card.addEventListener("dragstart", dragStart);
@@ -126,40 +151,40 @@ function confirmDelete(cardId) {
 
 // Substituindo a função editCardText anterior por esta
 function editCardText(cardId) {
-    const cardIndex = cardsArray.findIndex((card) => card.id === cardId);
-    const cardTextElement = document.getElementById(cardId).querySelector('.card-text');
-  
-    if (cardIndex !== -1 && cardTextElement) {
-      const currentText = cardsArray[cardIndex].text;
-  
-      // Criar um elemento de input para a edição
-      const inputElement = document.createElement('input');
-      inputElement.type = 'text';
-      inputElement.value = currentText;
-  
-      // Substituir o texto pelo input para edição
-      cardTextElement.innerHTML = '';
-      cardTextElement.appendChild(inputElement);
-  
-      // Adicionar um listener para detectar a conclusão da edição
-      inputElement.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') {
-          const newText = inputElement.value;
-          cardsArray[cardIndex].text = newText;
-          saveToLocalStorage();
-          // Atualizar o texto no card após a edição
-          cardTextElement.textContent = newText;
-          alert("Texto do card atualizado com sucesso.");
-        }
-      });
-  
-      // Focar no input para iniciar a edição
-      inputElement.focus();
-    }
+  const cardIndex = cardsArray.findIndex((card) => card.id === cardId);
+  const cardTextElement = document
+    .getElementById(cardId)
+    .querySelector(".card-text");
+
+  if (cardIndex !== -1 && cardTextElement) {
+    const currentText = cardsArray[cardIndex].text;
+
+    // Criar um elemento de input para a edição
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.value = currentText;
+
+    // Substituir o texto pelo input para edição
+    cardTextElement.innerHTML = "";
+    cardTextElement.appendChild(inputElement);
+
+    // Adicionar um listener para detectar a conclusão da edição
+    inputElement.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        const newText = inputElement.value;
+        cardsArray[cardIndex].text = newText;
+        saveToLocalStorage();
+        // Atualizar o texto no card após a edição
+        cardTextElement.textContent = newText;
+        alert("Texto do card atualizado com sucesso.");
+      }
+    });
+
+    // Focar no input para iniciar a edição
+    inputElement.focus();
   }
-  
-  
-  
+}
+
 //função substituida
 /*function editCardText(cardId) {
   const newText = prompt("Digite o novo texto:");
