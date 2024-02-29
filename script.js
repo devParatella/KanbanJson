@@ -138,8 +138,8 @@ function createCard(column, text, id, creationDate) {
   }
 
   // Cria botões de exclusão e edição e os adiciona ao cartão
-  const deleteButton = createButton("Excluir", () => confirmDelete(id));
-  const editButton = createButton("Editar", () => editCardText(id));
+  const deleteButton = createImageButton1("assets/trash-can.png", () => confirmDelete(id));
+  const editButton = createImageButton2("assets/pen.png", () => editCardText(id));
 
   card.appendChild(document.createElement("br")); // Adiciona quebra de linha
   card.appendChild(deleteButton);
@@ -152,6 +152,28 @@ function createButton(text, onClick) {
   button.textContent = text;
   button.addEventListener("click", onClick);
   return button;
+}
+
+// Imagem de lixeira
+function createImageButton1(imageSrc, onClickFunction) {
+  const img = document.createElement("img");
+    img.src = imageSrc;
+    img.alt = "Botão de Excluir";
+    img.style.cursor = "pointer";
+    img.classList.add("trash-can-icon"); // Adiciona a classe "trash-can-icon" à imagem para modificar no css
+    img.addEventListener("click", onClickFunction);
+  return img;
+}
+
+// Imagem de edição
+function createImageButton2(imageSrc, onClickFunction) {
+  const img = document.createElement("img");
+    img.src = imageSrc;
+    img.alt = "Botão de Editar";
+    img.style.cursor = "pointer";
+    img.classList.add("pen-icon"); // Adiciona a classe "trash-can-icon" à imagem para modificar no css
+    img.addEventListener("click", onClickFunction);
+  return img;
 }
 
 // Exclui um cartão da array, salva no armazenamento local e atualiza a visualização
@@ -292,4 +314,9 @@ function saveToLocalStorage() {
     return value;
   });
   localStorage.setItem("kanbanCards", cardsArrayString);
+}
+
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark-mode");
 }

@@ -6,10 +6,103 @@
   outline: none;
   box-sizing: border-box;
 }
+body.dark-mode {
+  background-color: #212529;
+  color: #899095;
+  height: 100vh;
+}
+:root {
+  --body-bg: #fafafa;
+  --body-color: #555;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+i{
+  display: inline;
+  justify-content: space-between;
+}
+.dark-mode:root {
+  --body-bg: #212529;
+  --body-color: #899095;
+  --link-color: #dee2e6;
+  --link-color-hover: #3cc368;
+}
+/* Estilos básicos para o corpo da página */
+body {
+  background-color: #eeeef7;
+}
+
+.dark {
+  max-width: 1680px;
+  width: 100%;
+  height: 2px;
+  background-color: 1px #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 22rem;
+}
+body.dark {
+  background: #292c35;
+}
+.button-dark{
+  background-color: #080808;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+  transform: scale(1.5);
+}
+
+.label .button-dark {
+  background-color: #f1eded;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.2s linear;
+}
+.fa-moon {
+  color: #f1c40f;
+}
+
+.fa-sun {
+  color: #f39c12;
+}
+.checkbox:checked + .label .button-dark {
+  transform: translateX(24px);
+}
+
+#check:checked + .button-dark{
+  background-color: #e0e0e0;
+}
+
+#check:checked + .label .button-dark::before{
+  transform: translateX(24px);
+}
+
+#check{
+  display:none;
+}
+
 
 /* Estilos básicos para o corpo da página */
 body {
-  background-color: #ddd;
+  background-color: #fff;
 }
 
 /* Estilo do título e header */
@@ -18,8 +111,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: #c9f504;
   padding: 25px;
+}
+
+.title{
+  font-size: 38px;
+  color: hsl(0, 0%, 0%);
 }
 
 /* Estilos para o quadro Kanban e suas colunas */
@@ -52,17 +150,17 @@ body {
 
 .column #style-todo {
   color: whitesmoke;
-  background-color: #f92f65;
+  background-color: #02bef7;
 }
 
 .column #style-doing {
   color: whitesmoke;
-  background-color: #fca144;
+  background-color: #2e6fe7;
 }
 
 .column #style-done {
   color: whitesmoke;
-  background-color: #49ddd1;
+  background-color: #043aec;
 }
 
 /* Estilos para as cartas no quadro */
@@ -120,18 +218,43 @@ input {
   border-radius: 5px;
 }
 
+/* Botões */
 button {
   cursor: pointer;
-  font-weight: bold;
-  padding: 5px;
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
-  color: whitesmoke;
-  background-color: #9543e8;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
-  color: rgb(255, 255, 255);
-  background-color: #7e2cd0;
+img{
+  width: 20px;
+  position: relative;
+  right: 2px;
+  top: 7px;
 }
+
+.trash-can-icon{
+  display: inline;
+  width: 20px;
+  position: relative;
+}
+
+.pen-icon{
+  display: inline;
+  width: 20px;
+  position: relative;
+  left: 3px;
+}
+
+/* Footer */
+
+footer{
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  height: 60px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
