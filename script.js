@@ -5,13 +5,22 @@ let cardsArray = JSON.parse(localStorage.getItem("kanbanCards")) || [];
 document.addEventListener("DOMContentLoaded", () => {
   const cards = getAllCards();
   cards.forEach((card) => {
-    createCard(card.column, card.text, card.id);
+    createCard(card.column, card.text, card.id, card.creationDate);
   });
 });
 
 // Retorna todos os cartões presentes na array
 function getAllCards() {
-  return cardsArray;
+  const cardsArrayString = localStorage.getItem("kanbanCards");
+  if (cardsArrayString) {
+    return JSON.parse(cardsArrayString, (key, value) => {
+      if (key === "creationDate" || key === "creationDate") {
+        return new Date(value);
+      }
+      return value;
+    });
+  }
+  return [];
 }
 
 // variável com o valor máximo de caracteres por card
@@ -19,6 +28,8 @@ const MAX_CHARACTERS = 400;
 
 // Adiciona um novo cartão à coluna especificada, atualiza a array e salva no armazenamento local
 function addCard(column) {
+  console.log(cardsArray);
+
   const inputId = `${column}-input`;
   const text = document.getElementById(inputId).value;
 
@@ -30,9 +41,10 @@ function addCard(column) {
     }
 
     const id = Date.now().toString();
-    
-    createCard(column, text, id, new Date()); // Passa a data atual para a criação do card
-    addCardArray({ id, column, text });
+    const creationDate = new Date();
+
+    createCard(column, text, id, creationDate); // Passa a data atual para a criação do card
+    addCardArray({ id, column, text, creationDate });
     saveToLocalStorage();
     // Limpa o campo de input após adicionar o cartão
     document.getElementById(inputId).value = "";
@@ -55,6 +67,8 @@ document
 
 // Atualiza a coluna de um cartão na array, salva no armazenamento local e atualiza a visualização
 function updateCardColumn(cardId, newColumn) {
+  console.log(cardsArray);
+
   const cardIndex = cardsArray.findIndex((card) => card.id === cardId);
   if (cardIndex !== -1) {
     cardsArray[cardIndex].column = newColumn;
@@ -64,9 +78,8 @@ function updateCardColumn(cardId, newColumn) {
 }
 
 // Cria um novo elemento de cartão e o adiciona à coluna especificada
-function createCard(column, text, id) {
-
-    // Cria o elemento de cartão
+function createCard(column, text, id, creationDate) {
+  // Cria o elemento de cartão
   const card = document.createElement("div");
   card.draggable = true;
   card.className = "card";
@@ -81,23 +94,26 @@ function createCard(column, text, id) {
   // Adiciona a hora e a data ao card
   const dateTime = document.createElement("div");
   dateTime.className = "date-time";
-  dateTime.textContent = getFormattedDateTime(new Date()); // Passa a data atual para a formatação
+  dateTime.textContent = `${getFormattedDateTime(creationDate)}`;
   card.appendChild(dateTime);
 
   // Adiciona o texto ao cartão
   card.appendChild(cardText);
 
   function getFormattedDateTime(date) {
-    const options = { 
-      day: '2-digit', 
-      month: '2-digit', 
-      year: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    };
-  
-    const formattedDateTime = date.toLocaleString('pt-BR', options);
-    return formattedDateTime;
+    if (date instanceof Date) {
+      const options = {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+
+      const formattedDateTime = date.toLocaleString("pt-BR", options);
+      return formattedDateTime;
+    }
+    return "";
   }
 
   // Adiciona os eventos de arrastar e soltar
@@ -130,6 +146,8 @@ function createButton(text, onClick) {
 
 // Exclui um cartão da array, salva no armazenamento local e atualiza a visualização
 function deleteCard(cardId) {
+  console.log(cardsArray);
+
   const cardIndex = cardsArray.findIndex((card) => card.id === cardId);
   if (cardIndex !== -1) {
     const deletedCard = cardsArray.splice(cardIndex, 1)[0];
@@ -206,7 +224,22 @@ function updateCardText(cardId, newText) {
 
 // Força o recarregamento da página para atualizar a visualização
 function updateCardView() {
-  location.reload(); // Atualiza a página
+  console.log(cardsArray);
+
+  const cards = getAllCards();
+  const todoColumn = document.getElementById("todo-cards");
+  const inProgressColumn = document.getElementById("in-progress-cards");
+  const doneColumn = document.getElementById("done-cards");
+
+  // Limpa as colunas antes de recriar os cartões
+  todoColumn.innerHTML = "";
+  inProgressColumn.innerHTML = "";
+  doneColumn.innerHTML = "";
+
+  // Recria os cartões nas colunas correspondentes
+  cards.forEach((card) => {
+    createCard(card.column, card.text, card.id, card.creationDate);
+  });
 }
 
 // Define os dados a serem transferidos durante o início de um arrasto
@@ -242,5 +275,11 @@ function allowDrop(e) {
 
 // Salva a array de cartões no armazenamento local
 function saveToLocalStorage() {
-  localStorage.setItem("kanbanCards", JSON.stringify(cardsArray));
+  const cardsArrayString = JSON.stringify(cardsArray, (key, value) => {
+    if (value instanceof Date) {
+      return value.toISOString();
+    }
+    return value;
+  });
+  localStorage.setItem("kanbanCards", cardsArrayString);
 }
