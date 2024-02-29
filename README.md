@@ -26,7 +26,7 @@ Há uma função getFormattedDateTime que formata uma data no padrão brasileiro
 A função updateCardView limpa as colunas antes de recriar os cartões, garantindo uma atualização adequada.
 
 
-Possiveis uncionalidades a implementar para melhorar e expandir o aplicativo Kanban.
+Possiveis funcionalidades a implementar para melhorar e expandir o aplicativo Kanban.
 
 1. **Comentários nos Cartões:**
    - Permitir que os usuários adicionem comentários aos cartões para fornecer mais contexto ou informações detalhadas sobre uma tarefa.
