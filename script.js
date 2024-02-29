@@ -28,12 +28,16 @@ const MAX_CHARACTERS = 400;
 
 // Adiciona um novo cartão à coluna especificada, atualiza a array e salva no armazenamento local
 function addCard(column) {
-  console.log(cardsArray);
-
   const inputId = `${column}-input`;
   const text = document.getElementById(inputId).value;
 
   if (text) {
+    // Verifica se o texto já existe na array
+    if (isTextAlreadyExists(text)) {
+      alert("Esta tarefa já existe. Por favor, insira uma tarefa diferente.");
+      return;
+    }
+
     // Verifica se o texto excede o limite de caracteres
     if (text.length > MAX_CHARACTERS) {
       alert(`O texto do cartão não pode exceder ${MAX_CHARACTERS} caracteres.`);
@@ -43,13 +47,19 @@ function addCard(column) {
     const id = Date.now().toString();
     const creationDate = new Date();
 
-    createCard(column, text, id, creationDate); // Passa a data atual para a criação do card
+    createCard(column, text, id, creationDate);
     addCardArray({ id, column, text, creationDate });
     saveToLocalStorage();
-    // Limpa o campo de input após adicionar o cartão
+
     document.getElementById(inputId).value = "";
   }
 }
+
+// Função para verificar se o texto já existe na array de cartões
+function isTextAlreadyExists(newText) {
+  return cardsArray.some((card) => card.text === newText);
+}
+
 
 // Adiciona um cartão à array
 function addCardArray(card) {
