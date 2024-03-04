@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="kanban.css">
+    <title>Quadro Kanban</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">Kanban Interativo - RPV - Turma 2</h1>
+        <div class="inputNova">
+            <input type="text" id="todo-input" placeholder="Nova tarefa">
+            <select id="priority-select">
+                <option value="alta">Alta Prioridade</option>
+                <option value="media">Média Prioridade</option>
+                <option value="baixa">Baixa Prioridade</option>
+            </select>
+            <button onclick="addCard('todo')">
+                <img src="assets/add.png" alt="botão de adicionar tarefa">
+            </button>
+        </div>
+    </div>
+
+    <div class="kanban-board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>A fazer</h2>
+            <div class="cards-container" id="todo-cards"></div>
+        </div>
+        <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Em andamento</h2>
+            <div class="cards-container" id="in-progress-cards"></div>
+        </div>
+        <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Concluído</h2>
+            <div class="cards-container" id="done-cards"></div>
+        </div>
+    </div>
+
+    <div class="dark">
+        <label for="check" class="button-dark">
+            <input type="checkbox" id="check" onchange="toggleDarkMode()">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+            Modo Escuro
+        </label>
+    </div>
+
+    <script src="kanban.js"></script>
+    <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

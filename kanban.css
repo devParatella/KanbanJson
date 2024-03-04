@@ -1,0 +1,292 @@
+/* Resetando estilos para garantir consistência entre navegadores */
+* {
+  font-family: "Arial", sans-serif; /* Define a fonte padrão para todo o documento */
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove preenchimentos padrão */
+  outline: none; /* Remove contornos ao focar em elementos */
+  box-sizing: border-box; /* Garante que a largura e altura dos elementos incluam o preenchimento e a borda */
+}
+
+/* Definição de estilos básicos para o corpo da página */
+body {
+  background-color: #eeeef7; /* Define a cor de fundo do corpo da página */
+  color: #555; /* Define a cor do texto */
+}
+
+/* Estilizando o cabeçalho da página */
+.header {
+  width: 99%; /* Garante que o cabeçalho ocupe toda a largura disponível */
+  display: flex; /* Usa flexbox para alinhar os elementos dentro do cabeçalho */
+  justify-content: space-between; /* Alinha os elementos com espaço entre eles */
+  align-items: center; /* Centraliza os elementos verticalmente */
+  background-color: #0489f5; /* Cor de fundo do cabeçalho */
+  padding: 10px; /* Adiciona preenchimento interno ao cabeçalho */
+}
+
+.title {
+  font-size: 38px; /* Tamanho da fonte do título */
+  color: #000; /* Cor do título */
+}
+
+/* Estilizando o quadro Kanban e suas colunas */
+.kanban-board {
+  display: flex; /* Usa flexbox para organizar as colunas */
+  justify-content: space-around; /* Alinha as colunas com espaço entre elas */
+  padding: 20px; /* Adiciona preenchimento interno ao quadro Kanban */
+  flex-wrap: wrap; /* Permite que as colunas se ajustem em telas menores */
+}
+
+.column {
+  padding: 10px; /* Adiciona preenchimento interno às colunas */
+  width: 30%; /* Define a largura das colunas */
+  min-height: 300px; /* Define a altura mínima das colunas */
+  min-width: 380px;
+  max-width: 400px;
+  border-radius: 5px; /* Adiciona bordas arredondadas às colunas */
+  background-color: #f4f4f4; /* Cor de fundo das colunas */
+  margin-bottom: 20px; /* Espaçamento entre as colunas */
+}
+
+/* Estilizando os títulos das colunas */
+.column h2 {
+  text-align: center; /* Alinha o texto ao centro */
+  padding: 2px; /* Adiciona preenchimento ao redor do texto */
+  border-top-left-radius: 5px; /* Adiciona bordas arredondadas ao título */
+  border-top-right-radius: 5px; /* Adiciona bordas arredondadas ao título */
+  color: #fff; /* Cor do texto */
+}
+
+#todo h2 {
+  background-color: #02bef7; /* Cor de fundo para a coluna "A fazer" */
+}
+
+#in-progress h2 {
+  background-color: #2e6fe7; /* Cor de fundo para a coluna "Em andamento" */
+}
+
+#done h2 {
+  background-color: #043aec; /* Cor de fundo para a coluna "Concluído" */
+}
+
+/* Estilizando os cartões dentro das colunas do quadro Kanban */
+.card {
+  position: relative; /* Define a posição dos cartões como relativa */
+  max-width: 100%; /* Garante que os cartões não ultrapassem a largura da coluna */
+  cursor: move; /* Altera o cursor para indicar que os cartões são arrastáveis */
+  padding: 10px; /* Adiciona preenchimento interno aos cartões */
+  margin: 10px 0; /* Define a margem dos cartões */
+  background-color: #fff; /* Cor de fundo dos cartões */
+  border: 1px solid #ddd; /* Adiciona uma borda aos cartões */
+  border-radius: 5px; /* Adiciona bordas arredondadas aos cartões */
+}
+
+.date-time {
+  position: absolute; /* Define a posição como absoluta */
+  bottom: 0; /* Alinha a parte inferior do elemento */
+  right: 0; /* Alinha a parte direita do elemento */
+  margin: 5px; /* Define a margem ao redor do elemento */
+  font-size: 12px; /* Tamanho da fonte */
+  color: #363636; /* Cor do texto */
+}
+
+.inputNova {
+  display: flex; /* Usa flexbox para alinhar os elementos */
+  align-items: center; /* Centraliza verticalmente os elementos */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra ao elemento */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border-radius: 2px; /* Adiciona bordas arredondadas */
+  min-height: max-content; /* Define a altura mínima do elemento */
+  word-wrap: break-word; /* Permite que o texto quebre em várias linhas */
+  margin-bottom: 20px; /* Espaçamento entre a entrada de nova tarefa e as colunas */
+}
+
+#todo-input::placeholder {
+  font-size: 16px; /* Tamanho do texto de espaço reservado */
+}
+
+#todo-input {
+  flex: 1; /* Ocupa todo o espaço disponível */
+  margin-right: 10px; /* Define a margem à direita */
+  font-size: 16px; /* Tamanho da fonte */
+}
+
+.card-text {
+  white-space: normal; /* Permite que o texto quebre em várias linhas */
+  word-break: break-word; /* Permite que o texto quebre em palavras longas */
+  width: 100%; /* Define a largura do texto como 100% */
+}
+
+/* Botões */
+button {
+  cursor: pointer; /* Altera o cursor para indicar que os botões são clicáveis */
+  background-color: transparent; /* Define a cor de fundo transparente */
+  border: none; /* Remove a borda */
+}
+
+img {
+  width: 20px; /* Define a largura das imagens */
+  position: relative; /* Define a posição relativa */
+  right: 2px; /* Alinha a imagem à direita */
+  top: 7px; /* Alinha a imagem ao topo */
+}
+
+.trash-can-icon,
+.pen-icon {
+  display: inline; /* Define a exibição como inline */
+  width: 20px; /* Define a largura */
+  position: relative; /* Define a posição relativa */
+}
+
+/* Estilizando o modo escuro */
+.dark {
+  max-width: 1680px; /* Define a largura máxima */
+  width: 100%; /* Define a largura */
+  height: 2px; /* Define a altura */
+  background-color: #fff; /* Cor de fundo */
+  display: flex; /* Usa flexbox */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  margin: 0 auto; /* Margem automática */
+  padding: 22rem; /* Adiciona preenchimento */
+}
+
+.dark-mode {
+  background: #292c35; /* Cor de fundo do modo escuro */
+}
+
+.button-dark {
+  background-color: #080808; /* Cor de fundo dos botões */
+  border-radius: 50px; /* Adiciona bordas arredondadas */
+  cursor: pointer; /* Altera o cursor */
+  display: flex; /* Usa flexbox */
+  justify-content: space-between; /* Alinha os elementos com espaço entre eles */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 5px; /* Adiciona preenchimento interno */
+  position: relative; /* Define a posição relativa */
+  height: 26px; /* Define a altura */
+  width: 50px; /* Define a largura */
+  transform: scale(1.5); /* Escala o elemento */
+}
+
+.label .button-dark {
+  background-color: #bbbbbb; /* Cor de fundo dos botões */
+  border-radius: 50%; /* Adiciona bordas arredondadas */
+  position: absolute; /* Define a posição absoluta */
+  top: 2px; /* Alinha o elemento ao topo */
+  left: 2px; /* Alinha o elemento à esquerda */
+  height: 22px; /* Define a altura */
+  width: 22px; /* Define a largura */
+  transform: translateX(0px); /* Move o elemento horizontalmente */
+  transition: transform 0.2s linear; /* Adiciona uma transição suave */
+}
+
+.fa-moon {
+  color: #f1c40f; /* Cor do ícone da lua */
+}
+
+.fa-sun {
+  color: #f39c12; /* Cor do ícone do sol */
+}
+
+.checkbox:checked + .label .button-dark {
+  transform: translateX(24px); /* Move o elemento horizontalmente */
+}
+
+#check:checked + .button-dark {
+  background-color: #e0e0e0; /* Cor de fundo quando o botão está marcado */
+}
+
+#check:checked + .label .button-dark::before {
+  transform: translateX(24px); /* Move o elemento horizontalmente */
+}
+
+#check {
+  display: none; /* Esconde o elemento */
+}
+
+/* Footer */
+/* Estilizando o rodapé */
+footer {
+  display: block; /* Define a exibição como bloco */
+  position: fixed; /* Define a posição como fixa */
+  bottom: 0px; /* Alinha o rodapé à parte inferior da página */
+  right: 0px; /* Alinha o rodapé à direita */
+  left: 0px; /* Alinha o rodapé à esquerda */
+  height: 60px; /* Define a altura */
+  padding: 10px; /* Adiciona preenchimento */
+  background-color: rgba(0, 0, 0, 0.1); /* Cor de fundo */
+}
+
+/* Estilos para dispositivos de largura pequena (por exemplo, smartphones) */
+@media only screen and (max-width: 600px) {
+  /* Adicione estilos específicos para dispositivos de largura pequena */
+  .column {
+    width: 100%; /* Em telas menores, as colunas ocupam 100% do espaço disponível */
+  }
+
+  .title {
+    font-size: 24px; /* Reduzindo o tamanho do título para telas menores */
+  }
+
+  .dark {
+    padding: 5rem; /* Reduzindo o preenchimento para telas menores */
+  }
+}
+
+/* Estilos para dispositivos de largura média (por exemplo, tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Adicione estilos específicos para dispositivos de largura média */
+}
+
+/* Estilos para dispositivos de largura grande (por exemplo, laptops e desktops) */
+@media only screen and (min-width: 1025px) {
+  /* Adicione estilos específicos para dispositivos de largura grande */
+}
+
+/* Adiciona novos estilos para os cartões de alta prioridade */
+.card.priority-alta::before {
+  content: "H";
+  position: absolute;
+  top: 75%;
+  left: calc(
+    95% - 20px - 80px
+  ); /* Ajustar de acordo com a largura do conteúdo */
+  width: 15px;
+  height: 15px;
+  background-color: #b80000;
+  border-radius: 5%;
+}
+
+/* Adiciona novos estilos para os cartões de média prioridade */
+.card.priority-media::before {
+  content: "M";
+  position: absolute;
+  top: 75%;
+  left: calc(
+    95% - 20px - 80px
+  ); /* Ajustar de acordo com a largura do conteúdo */
+  width: 15px;
+  height: 15px;
+  background-color: #ff8c00;
+  border-radius: 5%;
+}
+
+/* Adiciona novos estilos para os cartões de baixa prioridade */
+.card.priority-baixa::before {
+  content: "L";
+  position: absolute;
+  top: 75%;
+  left: calc(
+    95% - 20px - 80px
+  ); /* Ajustar de acordo com a largura do conteúdo */
+  width: 15px;
+  height: 15px;
+  background-color: #776585;
+  border-radius: 5%;
+}
+
+.card .priority {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
