@@ -40,7 +40,7 @@ Possiveis funcionalidades a implementar para melhorar e expandir o aplicativo Ka
 4. **Anexos e Upload de Arquivos:**
    - Permitir que os usuários anexem arquivos aos cartões, como documentos, imagens ou outros tipos de mídia.
 
-5. **Prioridades:**
+5. implementada em 04/03/2024       **Prioridades:**
    - Adicionar uma função de prioridade aos cartões para destacar tarefas mais importantes ou urgentes.
 
 6. **Histórico de Atividades:**
